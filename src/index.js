@@ -11,6 +11,7 @@ const moment = require('moment');
 const timeFormat = 'YYYY-MM-DD HH:mm:ss';
 const now = moment().format(timeFormat);
 const imgSize = 'm';
+const imgPerRequest = 2;
 
 console.log(`${now} App: started`);
 
@@ -19,7 +20,7 @@ createDirectoryIfNotExists(envs.DOWNLOAD_FOLDER);
 createDirectoryIfNotExists(envs.POSTED_FOLDER);
 
 const execute = async (dalleInstance) => {
-  const newFiles = await dalleInstance.run({size: imgSize});
+  const newFiles = await dalleInstance.run({size: imgSize, n: imgPerRequest});
   console.log(newFiles);
 }
 

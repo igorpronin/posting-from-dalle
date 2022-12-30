@@ -17,5 +17,9 @@
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",
     "twitter-api-v2": "^1.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igorpronin/posting-from-dalle.git"
   }
 }

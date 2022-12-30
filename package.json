@@ -13,9 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
-    "dalle-generate-and-download": "file:../dall-e-generate-and-download-img",
+    "dalle-generate-and-download": "github:igorpronin/dall-e-generate-and-download-img",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",
+    "node-cron": "^3.0.2",
     "twitter-api-v2": "^1.13.0"
   },
   "repository": {

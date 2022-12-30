@@ -16,4 +16,47 @@ const validateCronValues = (values) =>{
   });
 }
 
-module.exports = {createDirectoryIfNotExists, validateCronValues}
+const getFilesList = (folder) => {
+  return new Promise((resolve, reject) => {
+    fs.readdir(folder, (err, files) => {
+      if (err) {
+        console.log(err);
+        reject();
+      }
+      files = files.filter((file) => {
+        const filePath = `${folder}/${file}`;
+        return fs.statSync(filePath).isFile();
+      });
+      return resolve(files);
+    });
+  })
+}
+
+const getRandomArrayEl = (arr) => {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
+
+const moveFile = (oldPath, newPath) => {
+  return new Promise((resolve, reject) => {
+    fs.rename(oldPath, newPath, (error) => {
+      if (error) {
+        // If an error occurred, log it to the console
+        console.log(error);
+        reject();
+      } else {
+        // Otherwise, log a success message
+        console.log(`App: file moved successfully to ${newPath}`);
+        resolve();
+      }
+    });
+  })
+}
+
+module.exports = {
+  createDirectoryIfNotExists,
+  validateCronValues,
+  getFilesList,
+  getRandomArrayEl,
+  moveFile
+}

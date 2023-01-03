@@ -18,8 +18,10 @@ const {tweetTextWithImage} = require('./twitter');
 
 const timeFormat = 'YYYY-MM-DD HH:mm:ss';
 const imgSize = 'm';
-const minImgPerRequest = envs.MIN_IMAGES_PER_REQUEST;
-const maxImgPerRequest = envs.MAX_IMAGES_PER_REQUEST;
+const minImgPerRequest = +envs.MIN_IMAGES_PER_REQUEST;
+const maxImgPerRequest = +envs.MAX_IMAGES_PER_REQUEST;
+
+const now = moment().format(timeFormat);
 
 console.log(`${now} App: started`);
 

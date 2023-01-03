@@ -7,7 +7,8 @@ const {
   validateCronValues,
   getFilesList,
   getRandomArrayEl,
-  moveFile
+  moveFile,
+  getRandomInt
 } = require('./utils');
 const envs = process.env;
 const cronJobsTime = envs.POSTING_SCHEDULE.split(';');
@@ -16,9 +17,9 @@ const moment = require('moment');
 const {tweetTextWithImage} = require('./twitter');
 
 const timeFormat = 'YYYY-MM-DD HH:mm:ss';
-const now = moment().format(timeFormat);
 const imgSize = 'm';
-const imgPerRequest = 2;
+const minImgPerRequest = envs.MIN_IMAGES_PER_REQUEST;
+const maxImgPerRequest = envs.MAX_IMAGES_PER_REQUEST;
 
 console.log(`${now} App: started`);
 
@@ -27,8 +28,7 @@ createDirectoryIfNotExists(envs.DOWNLOAD_FOLDER);
 createDirectoryIfNotExists(envs.POSTED_FOLDER);
 
 const execute = async (dalleInstance) => {
-  const newFiles = await dalleInstance.run({size: imgSize, n: imgPerRequest});
-  console.log(newFiles);
+  await dalleInstance.run({size: imgSize, n: getRandomInt(minImgPerRequest, maxImgPerRequest)});
 }
 
 (async () => {
